@@ -16,7 +16,7 @@ arith.add(5, 10); // => 15
 
 Deviation
 ```js
-arith().divide(6, 2); // => 3 
+arith.divide(6, 2); // => 3 
 ```
 
 Multiplication
