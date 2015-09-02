@@ -3,7 +3,7 @@
 You have probably seen this example a thousand times, you do something like 0.1 + 0.2 and you get 0.30000000000000004. 
 This is because some numbers can’t be accurately represented by JavaScript’s only number type 
 (IEEE 754 Binary Floating-Point). This obviously leads to a lot of headache for us developers. So this is an attempt to 
-cure that. `arith` is very small (only ~1500 bytes) and it only has four methods; `add`, `divide`, `multiply` and 
+cure that. `arith` is very small (only ~1500 bytes, minified) and it only has four methods; `add`, `divide`, `multiply` and 
 `subtract` in two flavours.
 
 `arith` can be used with Node or in the browser (exported as a global variable).
