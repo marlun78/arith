@@ -1,3 +1,6 @@
+
+[![NPM](https://nodei.co/npm/arith.png)](https://www.npmjs.com/package/arith)
+
 # arith
 
 You have probably seen this example a thousand times, you do something like 0.1 + 0.2 and you get 0.30000000000000004. 
@@ -72,3 +75,8 @@ Or an array
 arith(1).add([2, 3, 4]).value(); // => 10
 ```
  
+### Comments / Bugs / Ideas
+
+Comments, ideas and bug reports are much appreciated! 
+Please enter them on the [issues page](https://github.com/marlun78/arith/issues). 
+Thanks!
