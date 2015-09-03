@@ -1,17 +1,17 @@
 (function () {
     'use strict';
 
-    var _root = typeof self === 'object' && self.self === self && self ||
+    var root = typeof self === 'object' && self.self === self && self ||
         typeof global === 'object' && global.global === global && global ||
         this;
-    var _slice = Array.prototype.slice;
-    var _toString = Object.prototype.toString;
-    var _isArray = Array.isArray || function (value) {
-            return _toString.call(value) === '[object Array]';
-        };
-    var _isFinite = Number.isFinite || function (value) {
-            return isFinite(value) === value === value;
-        };
+    var objectToString = Object.prototype.toString;
+    var isArray = Array.isArray || function (value) {
+        return objectToString.call(value) === '[object Array]';
+    };
+    var arraySlice = Array.prototype.slice;
+    var toArray = function (value) {
+        return arraySlice.call(value);
+    };
 
     function Arith(value) {
         if (!(this instanceof Arith)) {
@@ -43,20 +43,21 @@
         }
         exports.arith = Arith;
     } else {
-        _root.arith = Arith;
+        root.arith = Arith;
     }
 
     function makeStaticMethod(calc, returns) {
         return function (args) {
             var result = null;
-            args = _isArray(args) ? args : toArray(arguments);
+            args = isArray(args) ? args : toArray(arguments);
             var multiplier = findCommonMultiplier(args);
-            var number, index;
+            var number, index, item;
             var length = args.length;
             for (index = 0; index < length; index++) {
-                number = parseFloat(args[index]);
-                if (!_isFinite(number)) {
-                    throw new TypeError('Cannot preform arithmetic on ' + number);
+                item = args[index];
+                number = parseFloat(item);
+                if (!isFinite(number)) {
+                    throw new TypeError('Cannot preform arithmetic on ' + item + ' (' + typeof item + ')');
                 }
                 result = calc(result, number * multiplier);
             }
@@ -67,7 +68,7 @@
     function makePrototypeMethod(method) {
         /** @this Arith */
         return function (args) {
-            args = _isArray(args) ? args : toArray(arguments);
+            args = isArray(args) ? args : toArray(arguments);
             args.unshift(this._value);
             this._value = method(args);
             return this;
@@ -128,7 +129,4 @@
         return result / multiplier;
     }
 
-    function toArray(value) {
-        return _slice.call(value);
-    }
 }());
