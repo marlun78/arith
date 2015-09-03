@@ -1,6 +1,6 @@
 'use strict';
 
-var arith = require('../arith');
+var arith = typeof require !== 'undefined' ? require('../arith') : window.arith;
 
 describe('arith', function () {
     var cases = {
